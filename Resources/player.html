@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WatchParty player</title>
+<style>
+  html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden;
+               font-family: -apple-system, system-ui, sans-serif; }
+  #wrap { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+  #player { width: 100%; height: 100%; border: 0; }
+  /* Opaque cover over the idle player. (Hiding the player itself with visibility/display
+   * leaves WebKit without a video layer once a video loads — the picture stays black.) */
+  #msg { position: absolute; left: 0; top: 0; right: 0; bottom: 0; z-index: 2; background: #000;
+         display: flex; align-items: center; justify-content: center; color: #8a8a8a; font-size: 15px;
+         text-align: center; padding: 24px; line-height: 1.5; }
+  #msg.hidden { display: none; }
+</style>
+</head>
+<body>
+<div id="wrap"><div id="player"></div></div>
+<div id="msg">Move the mouse to show the controls, paste a YouTube link in the bar and press Return.<br>Everyone in the room watches it together.</div>
+<script>
+/*SYNC-BEGIN*/
+/* Sync controller. Two jobs:
+ *  1. Report what the local person does (play / pause / seek) to the app.
+ *  2. Apply what remote people did WITHOUT reporting it back (echo suppression),
+ *     and nudge playback toward the host's position on each tick.
+ * env = { post(obj), now() -> ms, player: YT.Player-like, onVideoLoaded(id) } */
+function createSync(env) {
+  var S = { UNSTARTED: -1, ENDED: 0, PLAYING: 1, PAUSED: 2, BUFFERING: 3, CUED: 5 };
+  var st = { ready: false, pending: null, suppressUntil: 0, lastT: 0, lastS: S.UNSTARTED,
+             lastPoll: 0, polls: 0, videoId: null };
+
+  function cur()   { try { return Number(env.player.getCurrentTime()) || 0; } catch (e) { return 0; } }
+  function state() { try { var s = env.player.getPlayerState(); return (typeof s === 'number') ? s : S.UNSTARTED; } catch (e) { return S.UNSTARTED; } }
+  function rate()  { try { return Number(env.player.getPlaybackRate()) || 1; } catch (e) { return 1; } }
+  function suppress(ms) { st.suppressUntil = env.now() + (ms || 1500); }
+  function suppressed()  { return env.now() < st.suppressUntil; }
+  function mark(t) { st.lastT = t; st.lastPoll = env.now(); }
+
+  /* Called with every observation (player events and the 250 ms poll). */
+  function observe(s, t) {
+    var n = env.now();
+    if (s === S.PLAYING || s === S.PAUSED) {
+      var wasPlaying = (st.lastS === S.PLAYING);
+      var dt = (n - st.lastPoll) / 1000;
+      var expected = wasPlaying ? st.lastT + dt * rate() : st.lastT;
+      var jumped = Math.abs(t - expected) > (wasPlaying ? 1.2 : 0.5);
+      if (!suppressed()) {
+        if (s !== st.lastS) env.post({ ev: 'state', s: s, pos: t });
+        else if (jumped)    env.post({ ev: 'seek', pos: t, playing: s === S.PLAYING });
+      }
+      st.lastS = s; st.lastT = t; st.lastPoll = n;
+    } else if (s === S.ENDED) {
+      if (!suppressed() && st.lastS !== S.ENDED) env.post({ ev: 'state', s: S.ENDED, pos: t });
+      st.lastS = S.ENDED; st.lastT = t; st.lastPoll = n;
+    } else {
+      /* buffering / cued / unstarted: playback clock is not advancing. Keep lastT
+       * (so a seek that is still buffering is detected once playback resumes). */
+      st.lastPoll = n;
+    }
+  }
+
+  var api = {
+    /* ---- applying remote commands (never reported back) ---- */
+    load: function (id, pos, play) {
+      if (!st.ready) { st.pending = { id: id, pos: pos, play: play }; return; }
+      st.videoId = id;
+      suppress(4000);
+      mark(pos || 0);
+      if (play === false) { env.player.cueVideoById(id, pos || 0); st.lastS = S.PAUSED; }
+      else                { env.player.loadVideoById(id, pos || 0); st.lastS = S.PLAYING; }
+      if (env.onVideoLoaded) env.onVideoLoaded(id);
+    },
+    play: function (pos) {
+      if (!st.ready) return;
+      suppress();
+      if (pos != null && Math.abs(cur() - pos) > 0.75) { env.player.seekTo(pos, true); mark(pos); }
+      else mark(cur());
+      env.player.playVideo();
+      st.lastS = S.PLAYING;
+    },
+    pause: function (pos) {
+      if (!st.ready) return;
+      suppress();
+      env.player.pauseVideo();
+      if (pos != null && Math.abs(cur() - pos) > 0.75) { env.player.seekTo(pos, true); mark(pos); }
+      else mark(cur());
+      st.lastS = S.PAUSED;
+    },
+    seek: function (pos, playing) {
+      if (!st.ready) return;
+      suppress();
+      env.player.seekTo(pos, true);
+      mark(pos);
+      if (playing) { env.player.playVideo();  st.lastS = S.PLAYING; }
+      else         { env.player.pauseVideo(); st.lastS = S.PAUSED; }
+    },
+    /* Host's position snapshot: correct drift, fix play/pause mismatches. */
+    applyTick: function (pos, playing, ended) {
+      if (!st.ready || !st.videoId || ended) return;
+      var s = state(), t = cur();
+      if (s === S.UNSTARTED || s === S.BUFFERING || s === S.ENDED) return;
+      if (playing) {
+        if (s === S.PLAYING) {
+          if (Math.abs(t - pos) > 2.0) { suppress(); env.player.seekTo(pos, true); mark(pos); }
+        } else api.play(pos);
+      } else {
+        if (s === S.PLAYING) api.pause(pos);
+        else if (s === S.PAUSED && Math.abs(t - pos) > 2.0) { suppress(); env.player.seekTo(pos, true); mark(pos); }
+      }
+    },
+    /* ---- local user intent (reported through the normal event path) ---- */
+    toggle: function () {
+      if (!st.ready) return;
+      var s = state();
+      if (s === S.PLAYING || s === S.BUFFERING) env.player.pauseVideo(); else env.player.playVideo();
+    },
+    /* ---- player callbacks ---- */
+    onReady: function () {
+      st.ready = true;
+      env.post({ ev: 'ready' });
+      if (st.pending) { var p = st.pending; st.pending = null; api.load(p.id, p.pos, p.play); }
+    },
+    onStateChange: function (s) { observe(s, cur()); },
+    onError: function (code) { env.post({ ev: 'error', code: code }); },
+    poll: function () {
+      if (!st.ready) return;
+      var s = state(), t = cur();
+      observe(s, t);
+      if ((++st.polls % 4) === 0) env.post({ ev: 'tick', pos: t, s: s });
+    },
+    _st: st
+  };
+  return api;
+}
+/*SYNC-END*/
+(function () {
+  function post(o) {
+    try { window.webkit.messageHandlers.wp.postMessage(JSON.stringify(o)); } catch (e) {}
+  }
+  var env = {
+    post: post,
+    now: function () { return Date.now(); },
+    player: null,
+    onVideoLoaded: function () { document.getElementById('msg').className = 'hidden'; }
+  };
+  var sync = createSync(env);
+  window.wp = sync;
+
+  window.onYouTubeIframeAPIReady = function () {
+    var player = new YT.Player('player', {
+      host: 'https://www.youtube.com',
+      width: '100%',
+      height: '100%',
+      playerVars: { enablejsapi: 1, origin: 'https://localhost', rel: 0, modestbranding: 1,
+                    playsinline: 1, autoplay: 0, controls: 1, iv_load_policy: 3, fs: 0 },
+      events: {
+        onReady: function () {
+          env.player = player;
+          sync.onReady();
+          setInterval(function () { sync.poll(); }, 250);
+        },
+        onStateChange: function (e) { sync.onStateChange(e.data); },
+        onError: function (e) { sync.onError(e.data); }
+      }
+    });
+  };
+
+  var tag = document.createElement('script');
+  tag.src = 'https://www.youtube.com/iframe_api';
+  tag.onerror = function () {
+    post({ ev: 'error', code: 'api' });
+    document.getElementById('msg').textContent = 'Could not load the YouTube player. Check your internet connection.';
+  };
+  document.head.appendChild(tag);
+})();
+</script>
+</body>
+</html>

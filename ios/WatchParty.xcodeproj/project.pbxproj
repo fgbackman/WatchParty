@@ -1,0 +1,374 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5FC7A1A3072EE7E973CB5543 /* wp_room.c in Sources */ = {isa = PBXBuildFile; fileRef = 81781560FEE1F9053004E256 /* wp_room.c */; };
+		E80CBD3E2240602137EDE5BD /* wp_net.c in Sources */ = {isa = PBXBuildFile; fileRef = C11CC566620429DA4DB97732 /* wp_net.c */; };
+		BB203F021D043F7D3A3B15F3 /* wp_lobby.c in Sources */ = {isa = PBXBuildFile; fileRef = F6E046D3C6F650462B81BAA0 /* wp_lobby.c */; };
+		71D06E00FCD8E0344C15DE24 /* wp_ec.c in Sources */ = {isa = PBXBuildFile; fileRef = BB5F5EDA4E3652E087E13814 /* wp_ec.c */; };
+		A4DE85303648C49BC2EA82EC /* wp_search.c in Sources */ = {isa = PBXBuildFile; fileRef = BE58078C22EF26225E141C54 /* wp_search.c */; };
+		B9DA211637FA2EF6B8C51041 /* wp_search_parse.c in Sources */ = {isa = PBXBuildFile; fileRef = E5CFDB036F2F2F9896C8E7A9 /* wp_search_parse.c */; };
+		324E1635900FDC1D533402DD /* wp_json.c in Sources */ = {isa = PBXBuildFile; fileRef = FA5922404FC928FD435D0347 /* wp_json.c */; };
+		5B924A96596033F622280A30 /* wp_util.c in Sources */ = {isa = PBXBuildFile; fileRef = 974A9E019DAC914EEB496A28 /* wp_util.c */; };
+		B63E7602985875CE89C0E145 /* wp_fancy.c in Sources */ = {isa = PBXBuildFile; fileRef = D0EA9B258D51BFA1DB48AEF9 /* wp_fancy.c */; };
+		69D871A8528FC7C03FB9AEB6 /* wp_ios.c in Sources */ = {isa = PBXBuildFile; fileRef = E7771DE9331B97B377D3CC0D /* wp_ios.c */; };
+		2D1417B0027995E4857DA8D7 /* player.html in Resources */ = {isa = PBXBuildFile; fileRef = D7AC3E08D95BF38C381182B3 /* player.html */; };
+		2F208ED4CD60C880C262BEB8 /* ate.png in Resources */ = {isa = PBXBuildFile; fileRef = B33852D42F79F329B8F2DA88 /* ate.png */; };
+		A8CCA35B64973304B77C0ACE /* ate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 677A93492685E19BBB5BEE68 /* ate@2x.png */; };
+		CE342BDC0C6F5497C37CE5E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2386E1B3D4E5729A2EFBFF6A /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D5D365D9CE9FC5A705EEBF4 /* wp_lobby.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wp_lobby.h; sourceTree = "<group>"; };
+		1F157B9391725E6C316EF268 /* wp_util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wp_util.h; sourceTree = "<group>"; };
+		2386E1B3D4E5729A2EFBFF6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		677A93492685E19BBB5BEE68 /* ate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ate@2x.png"; sourceTree = "<group>"; };
+		6F386C5A790F4873BE65A37E /* wp_fancy_table.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wp_fancy_table.h; sourceTree = "<group>"; };
+		7703A1A5AC83C3DAFB2F3F92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81781560FEE1F9053004E256 /* wp_room.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wp_room.c; sourceTree = "<group>"; };
+		826AD9236639B0198E72783F /* wp_search.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wp_search.h; sourceTree = "<group>"; };
+		83D2B9605C58CDE8DB22AF4D /* objc_glue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = objc_glue.h; sourceTree = "<group>"; };
+		8CC6D5F2C73D555E9BECB5BE /* wp_fancy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wp_fancy.h; sourceTree = "<group>"; };
+		974A9E019DAC914EEB496A28 /* wp_util.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wp_util.c; sourceTree = "<group>"; };
+		AB6024EAD413286B3C0381A4 /* wp_net.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wp_net.h; sourceTree = "<group>"; };
+		B33852D42F79F329B8F2DA88 /* ate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ate.png; sourceTree = "<group>"; };
+		BB5F5EDA4E3652E087E13814 /* wp_ec.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wp_ec.c; sourceTree = "<group>"; };
+		BE58078C22EF26225E141C54 /* wp_search.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wp_search.c; sourceTree = "<group>"; };
+		C11CC566620429DA4DB97732 /* wp_net.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wp_net.c; sourceTree = "<group>"; };
+		D0EA9B258D51BFA1DB48AEF9 /* wp_fancy.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wp_fancy.c; sourceTree = "<group>"; };
+		D23D64871EFE1D4400FB3456 /* wp_room.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wp_room.h; sourceTree = "<group>"; };
+		D7AC3E08D95BF38C381182B3 /* player.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = player.html; sourceTree = "<group>"; };
+		E2BDE700F2C1F670C936DC5A /* wp_json.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wp_json.h; sourceTree = "<group>"; };
+		E5CFDB036F2F2F9896C8E7A9 /* wp_search_parse.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wp_search_parse.c; sourceTree = "<group>"; };
+		E7771DE9331B97B377D3CC0D /* wp_ios.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wp_ios.c; sourceTree = "<group>"; };
+		F6E046D3C6F650462B81BAA0 /* wp_lobby.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wp_lobby.c; sourceTree = "<group>"; };
+		FA5922404FC928FD435D0347 /* wp_json.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wp_json.c; sourceTree = "<group>"; };
+		F5BF48AA40CAD7891EB709FC /* WatchParty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchParty.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		188DDD0BCF9FD45BE5533D83 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4EAE695AD1F489F78EA3E1C6 /*  */ = {
+			isa = PBXGroup;
+			children = (
+				394A8BC450B760EB15E09E9C /* iPhone */,
+				8103874AFE64A9368299E783 /* Shared engine */,
+				637B566079628D883711EBEE /* Resources */,
+				1D5F545FBA1B7116946BB4C6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		394A8BC450B760EB15E09E9C /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				E7771DE9331B97B377D3CC0D /* wp_ios.c */,
+				7703A1A5AC83C3DAFB2F3F92 /* Info.plist */,
+				2386E1B3D4E5729A2EFBFF6A /* Assets.xcassets */,
+			);
+			name = iPhone;
+			sourceTree = "<group>";
+		};
+		8103874AFE64A9368299E783 /* Shared engine */ = {
+			isa = PBXGroup;
+			children = (
+				81781560FEE1F9053004E256 /* wp_room.c */,
+				C11CC566620429DA4DB97732 /* wp_net.c */,
+				F6E046D3C6F650462B81BAA0 /* wp_lobby.c */,
+				BB5F5EDA4E3652E087E13814 /* wp_ec.c */,
+				BE58078C22EF26225E141C54 /* wp_search.c */,
+				E5CFDB036F2F2F9896C8E7A9 /* wp_search_parse.c */,
+				FA5922404FC928FD435D0347 /* wp_json.c */,
+				974A9E019DAC914EEB496A28 /* wp_util.c */,
+				D0EA9B258D51BFA1DB48AEF9 /* wp_fancy.c */,
+				83D2B9605C58CDE8DB22AF4D /* objc_glue.h */,
+				D23D64871EFE1D4400FB3456 /* wp_room.h */,
+				AB6024EAD413286B3C0381A4 /* wp_net.h */,
+				1D5D365D9CE9FC5A705EEBF4 /* wp_lobby.h */,
+				826AD9236639B0198E72783F /* wp_search.h */,
+				E2BDE700F2C1F670C936DC5A /* wp_json.h */,
+				1F157B9391725E6C316EF268 /* wp_util.h */,
+				8CC6D5F2C73D555E9BECB5BE /* wp_fancy.h */,
+				6F386C5A790F4873BE65A37E /* wp_fancy_table.h */,
+			);
+			name = "Shared engine";
+			path = ../src;
+			sourceTree = "<group>";
+		};
+		637B566079628D883711EBEE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D7AC3E08D95BF38C381182B3 /* player.html */,
+				B33852D42F79F329B8F2DA88 /* ate.png */,
+				677A93492685E19BBB5BEE68 /* ate@2x.png */,
+			);
+			name = Resources;
+			path = ../Resources;
+			sourceTree = "<group>";
+		};
+		1D5F545FBA1B7116946BB4C6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F5BF48AA40CAD7891EB709FC /* WatchParty.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		42AEFBAE01D2DFD981F7DA7D /* WatchParty */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E8A3F521412FF83F015FDA8 /* Build configuration list for PBXNativeTarget "WatchParty" */;
+			buildPhases = (
+				70AFFA3CC10687CEED98F05A /* Sources */,
+				188DDD0BCF9FD45BE5533D83 /* Frameworks */,
+				9F82B2C6D1A44F78A245A615 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WatchParty;
+			productName = WatchParty;
+			productReference = F5BF48AA40CAD7891EB709FC /* WatchParty.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		46F86FAA6BBF9AC94A7E4595 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					42AEFBAE01D2DFD981F7DA7D = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = C6C6C4AE6490A1638F29B90E /* Build configuration list for PBXProject "WatchParty" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4EAE695AD1F489F78EA3E1C6;
+			productRefGroup = 1D5F545FBA1B7116946BB4C6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				42AEFBAE01D2DFD981F7DA7D /* WatchParty */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9F82B2C6D1A44F78A245A615 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D1417B0027995E4857DA8D7 /* player.html in Resources */,
+				2F208ED4CD60C880C262BEB8 /* ate.png in Resources */,
+				A8CCA35B64973304B77C0ACE /* ate@2x.png in Resources */,
+				CE342BDC0C6F5497C37CE5E1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		70AFFA3CC10687CEED98F05A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FC7A1A3072EE7E973CB5543 /* wp_room.c in Sources */,
+				E80CBD3E2240602137EDE5BD /* wp_net.c in Sources */,
+				BB203F021D043F7D3A3B15F3 /* wp_lobby.c in Sources */,
+				71D06E00FCD8E0344C15DE24 /* wp_ec.c in Sources */,
+				A4DE85303648C49BC2EA82EC /* wp_search.c in Sources */,
+				B9DA211637FA2EF6B8C51041 /* wp_search_parse.c in Sources */,
+				324E1635900FDC1D533402DD /* wp_json.c in Sources */,
+				5B924A96596033F622280A30 /* wp_util.c in Sources */,
+				B63E7602985875CE89C0E145 /* wp_fancy.c in Sources */,
+				69D871A8528FC7C03FB9AEB6 /* wp_ios.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		495712BBF92850A215EF2864 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B8B06D246056B1B6740E0BFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		76402CAFAAD5FC89AD64F2D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../src",
+				);
+				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				OTHER_CFLAGS = (
+					"-fblocks",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					UIKit,
+					"-framework",
+					WebKit,
+					"-framework",
+					Network,
+					"-framework",
+					Security,
+					"-framework",
+					Foundation,
+					"-framework",
+					CoreFoundation,
+					"-framework",
+					CoreGraphics,
+					"-lobjc",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.fredbackman.watchparty.ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WARNING_CFLAGS = (
+					"-Wno-unused-parameter",
+					"-Wno-unused-function",
+				);
+			};
+			name = Debug;
+		};
+		1E5F342BB568734573C2AEDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../src",
+				);
+				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				OTHER_CFLAGS = (
+					"-fblocks",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					UIKit,
+					"-framework",
+					WebKit,
+					"-framework",
+					Network,
+					"-framework",
+					Security,
+					"-framework",
+					Foundation,
+					"-framework",
+					CoreFoundation,
+					"-framework",
+					CoreGraphics,
+					"-lobjc",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.fredbackman.watchparty.ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WARNING_CFLAGS = (
+					"-Wno-unused-parameter",
+					"-Wno-unused-function",
+				);
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C6C6C4AE6490A1638F29B90E /* Build configuration list for PBXProject "WatchParty" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				495712BBF92850A215EF2864 /* Debug */,
+				B8B06D246056B1B6740E0BFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4E8A3F521412FF83F015FDA8 /* Build configuration list for PBXNativeTarget "WatchParty" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				76402CAFAAD5FC89AD64F2D8 /* Debug */,
+				1E5F342BB568734573C2AEDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 46F86FAA6BBF9AC94A7E4595 /* Project object */;
+}
